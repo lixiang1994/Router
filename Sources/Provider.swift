@@ -1,0 +1,185 @@
+//
+//  Provider.swift
+//  ┌─┐      ┌───────┐ ┌───────┐
+//  │ │      │ ┌─────┘ │ ┌─────┘
+//  │ │      │ └─────┐ │ └─────┐
+//  │ │      │ ┌─────┘ │ ┌─────┘
+//  │ └─────┐│ └─────┐ │ └─────┐
+//  └───────┘└───────┘ └───────┘
+//
+//  Created by lee on 2019/4/1.
+//  Copyright © 2019年 lee. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import URLNavigator
+
+public typealias URLConvertible = URLNavigator.URLConvertible
+
+public class Provider<T: Typeable> {
+    
+    typealias ViewControllerFactory = (_ url: URLConvertible, _ values: [String: Any], _ context: Any?) -> Routerable?
+    
+    private let navigator = Navigator()
+    private let plugins: [PluginWrapper<T>]
+    private let opener: OpenerWrapper<T>
+    
+    public init<O: Openerable>(_ opener: O, plugins: Plugins<T>) where O.T == T {
+        self.plugins = plugins.plugins
+        self.opener = OpenerWrapper(opener)
+        
+        // 注册处理
+        T.all.forEach { registers($0) }
+    }
+}
+
+extension Provider {
+    
+    /// 打开
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - completion: 打开完成回调
+    /// - Returns: true or false
+    @discardableResult
+    public func open(_ url: T, completion: ((Bool) -> Void)? = .none) -> Bool {
+        return open(url.complete, completion: completion)
+    }
+    
+    /// 打开
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - completion: 打开完成回调
+    /// - Returns: true or false
+    @discardableResult
+    public func open(_ url: URLConvertible,
+                     completion: ((Bool) -> Void)? = .none) -> Bool {
+        return navigator.open(url, context: Context(completion ?? { _ in }))
+    }
+    
+    /// 获取视图控制器
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - context: context
+    /// - Returns: 视图控制器
+    public func viewController(_ url: T, _ context: Any? = nil) -> Routerable? {
+        return viewController(url.complete, context)
+    }
+    
+    /// 获取视图控制器
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - context: context
+    /// - Returns: 视图控制器
+    public func viewController(_ url: URLConvertible, _ context: Any? = nil) -> Routerable? {
+        return navigator.viewController(for: url, context: context) as? Routerable
+    }
+}
+
+extension Provider {
+    
+    private func handle(_ url: T, _ factory: @escaping URLOpenHandlerFactory) {
+        navigator.handle(url.pattern) { (url, values, context) -> Bool in
+            return factory(url, values, context)
+        }
+    }
+    
+    private func register(_ url: T, _ factory: @escaping ViewControllerFactory) {
+        navigator.register(url.pattern) { (url, values, context) -> UIViewController? in
+            return factory(url, values, context)
+        }
+    }
+}
+
+extension Provider {
+    
+    private func opener(controller type: T, _ url: URLConvertible, _ values: [String: Any]) -> Routerable? {
+        return opener.controller(type: type, url: url, values: values)
+    }
+    
+    private func opener(handle type: T, _ url: URLConvertible, _ values: [String : Any], _ completion: @escaping (Bool) -> Void) {
+        opener.handle(type: type, url: url, values: values, completion: completion)
+    }
+    
+    private func registers(_ type: T) {
+        
+        self.register(type) { [weak self] (url, values, context) -> Routerable? in
+            guard let self = self else { return nil }
+            return self.opener(controller: type, url, values)
+        }
+        self.handle(type) { [weak self] (url, values, context) -> Bool in
+            guard let self = self else { return false }
+            let context = context as? Context
+            
+            if self.plugins.isEmpty {
+                if let controller = self.viewController(url, context) {
+                    controller.open {
+                        context?.callback(true)
+                    }
+                    
+                } else {
+                    self.opener(handle: type, url, values) { (result) in
+                        context?.callback(result)
+                    }
+                }
+                
+            } else {
+                guard self.plugins.contains(where: { $0.should(open: type) }) else {
+                    return false
+                }
+                
+                var result = true
+                let total = self.plugins.count
+                var count = 0
+                let group = DispatchGroup()
+                self.plugins.forEach { p in
+                    group.enter()
+                    p.prepare(open: type) {
+                        // 方式插件多次回调
+                        defer { count += 1 }
+                        guard count < total else { return }
+                        
+                        result = $0 ? result : false
+                        group.leave()
+                    }
+                }
+                
+                group.notify(queue: .main) { [weak self] in
+                    guard let self = self else {
+                        context?.callback(false)
+                        return
+                    }
+                    guard result else {
+                        context?.callback(false)
+                        return
+                    }
+                    
+                    if let controller = self.viewController(url, context) {
+                        self.plugins.forEach {
+                            $0.will(open: type, controller: controller)
+                        }
+                        
+                        controller.open { [weak self] in
+                            guard let self = self else { return }
+                            self.plugins.forEach {
+                                $0.did(open: type, controller: controller)
+                            }
+                            context?.callback(true)
+                        }
+                        
+                    } else {
+                        self.opener(handle: type, url, values) { (result) in
+                            context?.callback(result)
+                        }
+                    }
+                }
+            }
+            return true
+        }
+    }
+}
+
