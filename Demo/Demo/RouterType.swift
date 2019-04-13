@@ -12,13 +12,16 @@ import Router
 
 private let schemes = "router"
 
-enum RouterType: Typeable, CaseIterable {
+enum RouterType {
     
     case open_http
     case open_https
     case open_none
     case open_live
     case open_fast
+}
+
+extension RouterType: Typeable {
     
     var pattern: String {
         switch self {
@@ -37,6 +40,4 @@ enum RouterType: Typeable, CaseIterable {
         default:            return pattern
         }
     }
-    
-    static var all: [RouterType] { return RouterType.allCases }
 }

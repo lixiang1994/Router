@@ -10,6 +10,8 @@ import UIKit
 
 class LiveViewController: UIViewController {
 
+    var id: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -63,16 +63,13 @@ public extension Pluginable {
     }
 }
 
-public protocol Typeable {
+public protocol Typeable: CaseIterable {
     
     /// 模板 用于注册 例如: xxx://open/<path:_>
     var pattern: String { get }
     
     /// 完整 用于打开 例如: xxx://open/xxx?id=1
     var complete: String { get }
-    
-    /// 全部
-    static var all: [Self] { get }
 }
 
 public protocol Routerable: UIViewController {

@@ -26,8 +26,9 @@ class RouterOpener: Openerable {
             
         case .open_live:
             guard let id = url.queryParameters["id"] else { return nil }
-            print(id)
-            return LiveViewController()
+            let controller = LiveViewController()
+            controller.id = id
+            return controller
             
         case .open_fast:
             return FastViewController()

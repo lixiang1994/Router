@@ -17,8 +17,8 @@ public struct Plugins<T: Typeable> {
     
     internal let plugins: [PluginWrapper<T>]
     
-    public init() {
-        self.plugins = []
+    public init<P: Pluginable>(_ item: P) where P.T == T {
+        self.plugins = [PluginWrapper(item)]
     }
     
     internal init(_ plugins: [PluginWrapper<T>] = []) {

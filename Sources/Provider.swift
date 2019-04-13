@@ -30,7 +30,7 @@ public class Provider<T: Typeable> {
         self.opener = OpenerWrapper(opener)
         
         // 注册处理
-        T.all.forEach { registers($0) }
+        T.allCases.forEach { registers($0) }
     }
 }
 

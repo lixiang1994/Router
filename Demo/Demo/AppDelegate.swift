@@ -11,8 +11,7 @@ import Router
 
 let route = Provider(
     RouterOpener(),
-    plugins: Plugins<RouterType>()
-        .add(RouterLaunchPlugin())
+    plugins: Plugins(RouterLaunchPlugin())
         .add(RouterAccountPlugin())
         .add(RouterSinglePlugin())
 )
