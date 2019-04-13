@@ -70,6 +70,22 @@ public protocol Typeable: CaseIterable {
     
     /// 完整 用于打开 例如: xxx://open/xxx?id=1
     var complete: String { get }
+    
+    /// 打开控制器
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - values: 参数值
+    /// - Returns: 实现了 Routerable 协议的视图控制器 如果返回为空则会调用下面打开处理方法
+    func controller(url: URLConvertible, values: [String: Any]) -> Routerable?
+    
+    /// 打开处理 (当无控制器时执行)
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - values: 参数值
+    ///   - completion: 处理完成结果回调 *必须调用
+    func handle(url: URLConvertible, values: [String: Any], completion: @escaping (Bool) -> Void)
 }
 
 public protocol Routerable: UIViewController {
@@ -84,29 +100,6 @@ public protocol Routerable: UIViewController {
     /// - Parameters:
     ///   - completion: 关闭完成回调
     func close(_ completion: @escaping () -> Void)
-}
-
-public protocol Openerable {
-    
-    associatedtype T
-    
-    /// 打开控制器
-    ///
-    /// - Parameters:
-    ///   - type: 类型
-    ///   - url: url
-    ///   - values: 参数值
-    /// - Returns: 实现了 Routerable 协议的视图控制器 如果返回为空则会调用下面打开处理方法
-    func controller(type: T, url: URLConvertible, values: [String: Any]) -> Routerable?
-    
-    /// 打开处理 (当无控制器时执行)
-    ///
-    /// - Parameters:
-    ///   - type: 类型
-    ///   - url: url
-    ///   - values: 参数值
-    ///   - completion: 处理完成结果回调 *必须调用
-    func handle(type: T, url: URLConvertible, values: [String: Any], completion: @escaping (Bool) -> Void)
 }
 
 public extension Typeable {

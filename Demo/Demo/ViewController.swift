@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func openAction(_ sender: Any) {
-        route.open(.open_live)
+        Router.open(.open_live)
     }
     
 }

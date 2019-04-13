@@ -23,11 +23,9 @@ public class Provider<T: Typeable> {
     
     private let navigator = Navigator()
     private let plugins: [PluginWrapper<T>]
-    private let opener: OpenerWrapper<T>
     
-    public init<O: Openerable>(_ opener: O, plugins: Plugins<T>) where O.T == T {
+    public init(_ plugins: Plugins<T>) {
         self.plugins = plugins.plugins
-        self.opener = OpenerWrapper(opener)
         
         // 注册处理
         T.allCases.forEach { registers($0) }
@@ -97,19 +95,9 @@ extension Provider {
 
 extension Provider {
     
-    private func opener(controller type: T, _ url: URLConvertible, _ values: [String: Any]) -> Routerable? {
-        return opener.controller(type: type, url: url, values: values)
-    }
-    
-    private func opener(handle type: T, _ url: URLConvertible, _ values: [String : Any], _ completion: @escaping (Bool) -> Void) {
-        opener.handle(type: type, url: url, values: values, completion: completion)
-    }
-    
     private func registers(_ type: T) {
-        
         self.register(type) { [weak self] (url, values, context) -> Routerable? in
-            guard let self = self else { return nil }
-            return self.opener(controller: type, url, values)
+            return type.controller(url: url, values: values)
         }
         self.handle(type) { [weak self] (url, values, context) -> Bool in
             guard let self = self else { return false }
@@ -122,7 +110,7 @@ extension Provider {
                     }
                     
                 } else {
-                    self.opener(handle: type, url, values) { (result) in
+                    type.handle(url: url, values: values) { (result) in
                         context?.callback(result)
                     }
                 }
@@ -139,7 +127,7 @@ extension Provider {
                 self.plugins.forEach { p in
                     group.enter()
                     p.prepare(open: type) {
-                        // 方式插件多次回调
+                        // 防止插件多次回调
                         defer { count += 1 }
                         guard count < total else { return }
                         
@@ -172,7 +160,7 @@ extension Provider {
                         }
                         
                     } else {
-                        self.opener(handle: type, url, values) { (result) in
+                        type.handle(url: url, values: values) { (result) in
                             context?.callback(result)
                         }
                     }

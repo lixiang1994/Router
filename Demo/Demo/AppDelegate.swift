@@ -9,13 +9,6 @@
 import UIKit
 import Router
 
-let route = Provider(
-    RouterOpener(),
-    plugins: Plugins(RouterLaunchPlugin())
-        .add(RouterAccountPlugin())
-        .add(RouterSinglePlugin())
-)
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

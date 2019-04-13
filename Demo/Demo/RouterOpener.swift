@@ -11,12 +11,10 @@ import UIKit
 import SafariServices
 import Router
 
-class RouterOpener: Openerable {
+extension RouterType {
     
-    func controller(type: RouterType,
-                    url: URLConvertible,
-                    values: [String: Any]) -> Routerable? {
-        switch type {
+    func controller(url: URLConvertible, values: [String: Any]) -> Routerable? {
+        switch self {
         case .open_http, .open_https:
             guard let url = url.urlValue else { return nil }
             return SFSafariViewController(url: url)
@@ -35,7 +33,7 @@ class RouterOpener: Openerable {
         }
     }
     
-    func handle(type: RouterType, url: URLConvertible, values: [String : Any], completion: @escaping (Bool) -> Void) {
+    func handle(url: URLConvertible, values: [String : Any], completion: @escaping (Bool) -> Void) {
         completion(true)
     }
 }
