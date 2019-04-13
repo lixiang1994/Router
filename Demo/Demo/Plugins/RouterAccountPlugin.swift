@@ -8,7 +8,7 @@
 
 import Router
 
-class RouterAccountPlugin: Pluginable {
+class RouterAccountPlugin: RouterPluginable {
     
     func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now()) {

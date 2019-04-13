@@ -13,11 +13,11 @@
 
 import Foundation
 
-public struct Plugins<T: Typeable> {
+public struct Plugins<T: RouterTypeable> {
     
     internal let plugins: [AnyPlugin<T>]
     
-    public init<P: Pluginable>(_ item: P) where P.T == T {
+    public init<P: RouterPluginable>(_ item: P) where P.T == T {
         self.plugins = [AnyPlugin(item)]
     }
     
@@ -25,7 +25,7 @@ public struct Plugins<T: Typeable> {
         self.plugins = plugins
     }
     
-    public func add<P: Pluginable>(_ item: P) -> Plugins where P.T == T {
+    public func add<P: RouterPluginable>(_ item: P) -> Plugins where P.T == T {
         return Plugins(plugins + [AnyPlugin(item)])
     }
 }

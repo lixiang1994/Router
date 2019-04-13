@@ -13,14 +13,14 @@
 
 import Foundation
 
-struct AnyPlugin<T: Typeable> {
+struct AnyPlugin<T: RouterTypeable> {
     
     private let should: (T) -> Bool
     private let prepare: (T, @escaping (Bool) -> Void) -> Void
     private let will: (T, Routerable) -> Void
     private let did: (T, Routerable) -> Void
     
-    init<I: Pluginable>(_ type: I) where I.T == T {
+    init<I: RouterPluginable>(_ type: I) where I.T == T {
         should = { type.should(open: $0) }
         prepare = { type.prepare(open: $0, completion: $1) }
         will = { type.will(open: $0, controller: $1) }
@@ -28,7 +28,7 @@ struct AnyPlugin<T: Typeable> {
     }
 }
 
-extension AnyPlugin: Pluginable {
+extension AnyPlugin: RouterPluginable {
     
     func should(open type: T) -> Bool {
         return should(type)

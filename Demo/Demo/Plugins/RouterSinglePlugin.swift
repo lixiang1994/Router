@@ -21,7 +21,7 @@ protocol RouterSingleable: Routerable {
     func close(will single: RouterSingleType, completion: @escaping (Bool) -> Void)
 }
 
-class RouterSinglePlugin: Pluginable {
+class RouterSinglePlugin: RouterPluginable {
     
     func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
         guard let single = make(type) else {

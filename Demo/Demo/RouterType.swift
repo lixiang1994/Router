@@ -21,7 +21,7 @@ enum RouterType {
     case open_fast
 }
 
-extension RouterType: Typeable {
+extension RouterType: RouterTypeable {
     
     var pattern: String {
         switch self {

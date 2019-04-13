@@ -17,7 +17,7 @@ import URLNavigator
 
 public typealias URLConvertible = URLNavigator.URLConvertible
 
-public class Provider<T: Typeable> {
+public class Provider<T: RouterTypeable> {
     
     typealias ViewControllerFactory = (_ url: URLConvertible, _ values: [String: Any], _ context: Any?) -> Routerable?
     

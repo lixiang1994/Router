@@ -14,7 +14,7 @@
 import Foundation
 import UIKit
 
-public protocol Pluginable {
+public protocol RouterPluginable {
     
     associatedtype T
     
@@ -46,7 +46,7 @@ public protocol Pluginable {
     func did(open type: T, controller: Routerable)
 }
 
-public extension Pluginable {
+public extension RouterPluginable {
     
     func should(open type: T) -> Bool {
         return true
@@ -63,7 +63,7 @@ public extension Pluginable {
     }
 }
 
-public protocol Typeable: CaseIterable {
+public protocol RouterTypeable: CaseIterable {
     
     /// 模板 用于注册 例如: xxx://open/<path:_>
     var pattern: String { get }
@@ -102,7 +102,7 @@ public protocol Routerable: UIViewController {
     func close(_ completion: @escaping () -> Void)
 }
 
-public extension Typeable {
+public extension RouterTypeable {
     
     func appending(_ params: [String: String]) -> String {
         return appending(complete, params)

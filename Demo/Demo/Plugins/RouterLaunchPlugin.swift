@@ -8,7 +8,7 @@
 
 import Router
 
-class RouterLaunchPlugin: Pluginable {
+class RouterLaunchPlugin: RouterPluginable {
     
     private var completion: ((Bool) -> Void)?
     
