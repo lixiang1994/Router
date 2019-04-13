@@ -20,8 +20,8 @@ s.requires_arc = true
 
 s.frameworks = "UIKit", "Foundation"
 
-s.swift_version = "4.2"
-s.swift_versions = ["4.2", "5.0"]
+s.swift_version = "5.0"
+#s.swift_versions = ["4.2", "5.0"]
 
 s.dependency "URLNavigator", "2.2.0"
 
