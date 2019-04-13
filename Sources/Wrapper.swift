@@ -13,7 +13,7 @@
 
 import Foundation
 
-struct PluginWrapper<T: Typeable>: Pluginable {
+struct AnyPlugin<T: Typeable> {
     
     private let should: (T) -> Bool
     private let prepare: (T, @escaping (Bool) -> Void) -> Void
@@ -26,6 +26,9 @@ struct PluginWrapper<T: Typeable>: Pluginable {
         will = { type.will(open: $0, controller: $1) }
         did = { type.did(open: $0, controller: $1) }
     }
+}
+
+extension AnyPlugin: Pluginable {
     
     func should(open type: T) -> Bool {
         return should(type)
