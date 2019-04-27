@@ -14,8 +14,8 @@ enum Router {
     
     static let router = Provider(
         [RouterLaunchPlugin(),
-        RouterAccountPlugin(),
-        RouterSinglePlugin()]
+         RouterAccountPlugin(),
+         RouterSinglePlugin()]
     )
 }
 
