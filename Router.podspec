@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "Router"
-s.version      = "1.0.0"
+s.version      = "1.0.1"
 s.summary      = "基于URLNavigator抽象的路由组件 支持任意类型配置 插件机制"
 
 s.homepage     = "https://github.com/lixiang1994/Router"

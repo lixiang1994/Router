@@ -30,6 +30,9 @@ extension RouterType {
             
         case .open_fast:
             return FastViewController()
+            
+        case .open_needlogin:
+            return NeedLoginViewController()
         }
     }
     
@@ -39,6 +42,7 @@ extension RouterType {
 }
 
 extension NoneViewController: Routerable { }
+extension NeedLoginViewController: Routerable { }
 
 extension SFSafariViewController: Routerable {
     

@@ -13,9 +13,9 @@ import Router
 enum Router {
     
     static let router = Provider(
-        Plugins(RouterLaunchPlugin())
-            .add(RouterAccountPlugin())
-            .add(RouterSinglePlugin())
+        [RouterLaunchPlugin(),
+        RouterAccountPlugin(),
+        RouterSinglePlugin()]
     )
 }
 

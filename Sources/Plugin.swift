@@ -1,5 +1,5 @@
 //
-//  Plugins.swift
+//  Plugin.swift
 //  ┌─┐      ┌───────┐ ┌───────┐
 //  │ │      │ ┌─────┘ │ ┌─────┘
 //  │ │      │ └─────┐ │ └─────┐
@@ -7,25 +7,28 @@
 //  │ └─────┐│ └─────┐ │ └─────┐
 //  └───────┘└───────┘ └───────┘
 //
-//  Created by lee on 2019/4/1.
+//  Created by lee on 2019/4/27.
 //  Copyright © 2019年 lee. All rights reserved.
 //
-
 import Foundation
 
-public struct Plugins<T: RouterTypeable> {
+open class Plugin<T: RouterTypeable>: RouterPluginable {
     
-    internal let plugins: [AnyPlugin<T>]
-    
-    public init<P: RouterPluginable>(_ item: P) where P.T == T {
-        self.plugins = [AnyPlugin(item)]
+    public init() {
+        
     }
     
-    internal init(_ plugins: [AnyPlugin<T>] = []) {
-        self.plugins = plugins
+    open func should(open type: T) -> Bool {
+        return true
     }
     
-    public func add<P: RouterPluginable>(_ item: P) -> Plugins where P.T == T {
-        return Plugins(plugins + [AnyPlugin(item)])
+    open func prepare(open type: T, completion: @escaping (Bool) -> Void) {
+        completion(true)
+    }
+    
+    open func will(open type: T, controller: Routerable) {
+    }
+    
+    open func did(open type: T, controller: Routerable) {
     }
 }

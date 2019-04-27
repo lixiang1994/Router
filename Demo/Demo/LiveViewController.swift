@@ -33,14 +33,8 @@ extension LiveViewController: RouterSingleable {
     }
     
     func close(will single: RouterSingleType, completion: @escaping (Bool) -> Void) {
-        switch single {
-        case .live:
-            completion(false)
-            
-        default:
-            close {
-                completion(true)
-            }
+        close {
+            completion(true)
         }
     }
     

@@ -46,23 +46,6 @@ public protocol RouterPluginable {
     func did(open type: T, controller: Routerable)
 }
 
-public extension RouterPluginable {
-    
-    func should(open type: T) -> Bool {
-        return true
-    }
-    
-    func prepare(open type: T, completion: @escaping (Bool) -> Void) {
-        completion(true)
-    }
-    
-    func will(open type: T, controller: Routerable) {
-    }
-    
-    func did(open type: T, controller: Routerable) {
-    }
-}
-
 public protocol RouterTypeable: CaseIterable {
     
     /// 模板 用于注册 例如: xxx://open/<path:_>

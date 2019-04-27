@@ -8,26 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		4A0C4CA6D15A356505695BCF /* Pods_Router.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 433DDBBFBEDCE5F52EB5DA5E /* Pods_Router.framework */; };
+		C9170B7D2274337000052A4E /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9170B7C2274337000052A4E /* Plugin.swift */; };
 		C9D0289522607AD100B5E061 /* Router.h in Headers */ = {isa = PBXBuildFile; fileRef = C9D0289322607AD100B5E061 /* Router.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9D0289C22607C9300B5E061 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D0289B22607C9300B5E061 /* Provider.swift */; };
 		C9D0289E22607D3F00B5E061 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D0289D22607D3F00B5E061 /* Context.swift */; };
 		C9D028A022607DB100B5E061 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D0289F22607DB100B5E061 /* Protocol.swift */; };
-		C9D028A222607E0500B5E061 /* Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D028A122607E0500B5E061 /* Wrapper.swift */; };
-		C9D028A422607E3100B5E061 /* Plugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D028A322607E3100B5E061 /* Plugins.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1914FB7D28826DD9E48B39CC /* Pods-Router.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Router.release.xcconfig"; path = "Target Support Files/Pods-Router/Pods-Router.release.xcconfig"; sourceTree = "<group>"; };
 		21744AB499310C2ECAEBB625 /* Pods-Router.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Router.debug.xcconfig"; path = "Target Support Files/Pods-Router/Pods-Router.debug.xcconfig"; sourceTree = "<group>"; };
 		433DDBBFBEDCE5F52EB5DA5E /* Pods_Router.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Router.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9170B7C2274337000052A4E /* Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		C9D0289022607AD100B5E061 /* Router.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Router.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D0289322607AD100B5E061 /* Router.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Router.h; sourceTree = "<group>"; };
 		C9D0289422607AD100B5E061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9D0289B22607C9300B5E061 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		C9D0289D22607D3F00B5E061 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		C9D0289F22607DB100B5E061 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
-		C9D028A122607E0500B5E061 /* Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wrapper.swift; sourceTree = "<group>"; };
-		C9D028A322607E3100B5E061 /* Plugins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plugins.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +83,7 @@
 				C9D0289B22607C9300B5E061 /* Provider.swift */,
 				C9D0289D22607D3F00B5E061 /* Context.swift */,
 				C9D0289F22607DB100B5E061 /* Protocol.swift */,
-				C9D028A122607E0500B5E061 /* Wrapper.swift */,
-				C9D028A322607E3100B5E061 /* Plugins.swift */,
+				C9170B7C2274337000052A4E /* Plugin.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -196,10 +193,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9170B7D2274337000052A4E /* Plugin.swift in Sources */,
 				C9D0289C22607C9300B5E061 /* Provider.swift in Sources */,
-				C9D028A222607E0500B5E061 /* Wrapper.swift in Sources */,
 				C9D0289E22607D3F00B5E061 /* Context.swift in Sources */,
-				C9D028A422607E3100B5E061 /* Plugins.swift in Sources */,
 				C9D028A022607DB100B5E061 /* Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

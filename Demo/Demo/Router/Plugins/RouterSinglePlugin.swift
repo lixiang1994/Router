@@ -21,9 +21,9 @@ protocol RouterSingleable: Routerable {
     func close(will single: RouterSingleType, completion: @escaping (Bool) -> Void)
 }
 
-class RouterSinglePlugin: RouterPluginable {
+class RouterSinglePlugin: Plugin<RouterType> {
     
-    func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
+    override func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
         guard let single = make(type) else {
             completion(true)
             return
@@ -35,7 +35,7 @@ class RouterSinglePlugin: RouterPluginable {
         current.close(will: single, completion: completion)
     }
     
-    func will(open type: RouterType, controller: Routerable) {
+    override func will(open type: RouterType, controller: Routerable) {
         guard let controller = controller as? Singleable else {
             return
         }
@@ -75,6 +75,4 @@ extension RouterSinglePlugin {
 enum RouterSingleType {
     case live
     case fast
-    case battles
-    case answer
 }

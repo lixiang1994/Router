@@ -22,10 +22,10 @@ public class Provider<T: RouterTypeable> {
     typealias ViewControllerFactory = (_ url: URLConvertible, _ values: [String: Any], _ context: Any?) -> Routerable?
     
     private let navigator = Navigator()
-    private let plugins: [AnyPlugin<T>]
+    private let plugins: [Plugin<T>]
     
-    public init(_ plugins: Plugins<T>) {
-        self.plugins = plugins.plugins
+    public init(_ plugins: [Plugin<T>]) {
+        self.plugins = plugins
         
         // 注册处理
         T.allCases.forEach { registers($0) }

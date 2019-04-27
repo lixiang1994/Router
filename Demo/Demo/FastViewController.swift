@@ -31,6 +31,14 @@ extension FastViewController: RouterSingleable {
     }
     
     func close(will single: RouterSingleType, completion: @escaping (Bool) -> Void) {
-        completion(false)
+        switch single {
+        case .fast:
+            completion(false)
+            
+        default:
+            close {
+                completion(true)
+            }
+        }
     }
 }

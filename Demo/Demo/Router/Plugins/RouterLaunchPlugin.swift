@@ -8,11 +8,12 @@
 
 import Router
 
-class RouterLaunchPlugin: RouterPluginable {
+class RouterLaunchPlugin: Plugin<RouterType> {
     
     private var completion: ((Bool) -> Void)?
     
-    init() {
+    override init() {
+        super.init()
         
         NotificationCenter.Delegate.add(
             .launched,
@@ -26,7 +27,7 @@ class RouterLaunchPlugin: RouterPluginable {
         completion = nil
     }
     
-    func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
+    override func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
         guard !AppDelegate.shared.isLaunched else {
             completion(true)
             return

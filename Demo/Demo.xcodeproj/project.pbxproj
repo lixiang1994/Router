@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		6A595E95EAE9E20D30D1A8D6 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF996BB2479B7EE857452E0D /* Pods_Demo.framework */; };
+		C9170B802274475200052A4E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9170B7F2274475200052A4E /* LoginViewController.swift */; };
+		C9170B822274483F00052A4E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9170B812274483F00052A4E /* Account.swift */; };
+		C9170B8422744F6300052A4E /* NeedLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9170B8322744F6300052A4E /* NeedLoginViewController.swift */; };
 		C9D028B222607F8200B5E061 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D028B122607F8200B5E061 /* AppDelegate.swift */; };
 		C9D028B422607F8200B5E061 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D028B322607F8200B5E061 /* ViewController.swift */; };
 		C9D028B722607F8200B5E061 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9D028B522607F8200B5E061 /* Main.storyboard */; };
@@ -28,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		4FD45B063BA419F7B2949502 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		C9170B7F2274475200052A4E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C9170B812274483F00052A4E /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		C9170B8322744F6300052A4E /* NeedLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginViewController.swift; sourceTree = "<group>"; };
 		C9D028AE22607F8200B5E061 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D028B122607F8200B5E061 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9D028B322607F8200B5E061 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +77,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C9170B7E227446BB00052A4E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				C9D028F32260902E00B5E061 /* Router.swift */,
+				C9D028F52260932E00B5E061 /* RouterType.swift */,
+				C9D028DE226088F600B5E061 /* RouterOpener.swift */,
+				C9D028DD226088B300B5E061 /* Plugins */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		C9D028A522607F8200B5E061 = {
 			isa = PBXGroup;
 			children = (
@@ -92,20 +109,20 @@
 		C9D028B022607F8200B5E061 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				C9D028F32260902E00B5E061 /* Router.swift */,
+				C9170B7E227446BB00052A4E /* Router */,
 				C9D028E82260891C00B5E061 /* Utils */,
-				C9D028F52260932E00B5E061 /* RouterType.swift */,
-				C9D028DE226088F600B5E061 /* RouterOpener.swift */,
-				C9D028DD226088B300B5E061 /* Plugins */,
 				C9D028B122607F8200B5E061 /* AppDelegate.swift */,
 				C9D028B322607F8200B5E061 /* ViewController.swift */,
 				C9D028ED2260893500B5E061 /* FastViewController.swift */,
 				C9D028EE2260893500B5E061 /* LiveViewController.swift */,
 				C9D028EF2260893500B5E061 /* NoneViewController.swift */,
+				C9170B8322744F6300052A4E /* NeedLoginViewController.swift */,
+				C9170B7F2274475200052A4E /* LoginViewController.swift */,
 				C9D028B522607F8200B5E061 /* Main.storyboard */,
 				C9D028B822607F8200B5E061 /* Assets.xcassets */,
 				C9D028BA22607F8200B5E061 /* LaunchScreen.storyboard */,
 				C9D028BD22607F8200B5E061 /* Info.plist */,
+				C9170B812274483F00052A4E /* Account.swift */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -148,7 +165,7 @@
 				C9D028AA22607F8200B5E061 /* Sources */,
 				C9D028AB22607F8200B5E061 /* Frameworks */,
 				C9D028AC22607F8200B5E061 /* Resources */,
-				863EA1FA6521E155C9C698E5 /* [CP] Embed Pods Frameworks */,
+				398883A394CE113360F5C960 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -206,7 +223,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		863EA1FA6521E155C9C698E5 /* [CP] Embed Pods Frameworks */ = {
+		398883A394CE113360F5C960 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -216,6 +233,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Demo/Pods-Demo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Router/Router.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/URLNavigator/URLNavigator.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -223,6 +241,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Router.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URLNavigator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,16 +278,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9170B802274475200052A4E /* LoginViewController.swift in Sources */,
 				C9D028F62260932E00B5E061 /* RouterType.swift in Sources */,
 				C9D028B422607F8200B5E061 /* ViewController.swift in Sources */,
 				C9D028E52260890900B5E061 /* RouterLaunchPlugin.swift in Sources */,
 				C9D028F12260893500B5E061 /* LiveViewController.swift in Sources */,
+				C9170B822274483F00052A4E /* Account.swift in Sources */,
 				C9D028E62260890900B5E061 /* RouterSinglePlugin.swift in Sources */,
 				C9D028B222607F8200B5E061 /* AppDelegate.swift in Sources */,
 				C9D028F02260893500B5E061 /* FastViewController.swift in Sources */,
 				C9D028EB2260892B00B5E061 /* Notification.swift in Sources */,
 				C9D028EC2260892B00B5E061 /* Notificationable.swift in Sources */,
 				C9D028E0226088F600B5E061 /* RouterOpener.swift in Sources */,
+				C9170B8422744F6300052A4E /* NeedLoginViewController.swift in Sources */,
 				C9D028E72260890900B5E061 /* RouterAccountPlugin.swift in Sources */,
 				C9D028F22260893500B5E061 /* NoneViewController.swift in Sources */,
 				C9D028F42260902E00B5E061 /* Router.swift in Sources */,
@@ -421,6 +443,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 683UGRW72Z;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -440,6 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 683UGRW72Z;
 				INFOPLIST_FILE = Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
