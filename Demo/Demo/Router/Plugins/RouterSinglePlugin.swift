@@ -23,6 +23,14 @@ protocol RouterSingleable: Routerable {
 
 class RouterSinglePlugin: Plugin<RouterType> {
     
+    /*
+     在准备打开阶段 拦截单一特性页面
+     (在一些业务场景中 最多只能有一个打开, 不能同时打开的页面的这种特性 简称单一特性)
+     
+     判断当前要打开的类型是否为单一特性类型.
+     判断当前是否有相同单一特性的页面已经打开.
+     告知原来已经打开的页面即将要打开一个新的页面 请求关闭处理.
+     */
     override func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
         guard let single = make(type) else {
             completion(true)
@@ -35,6 +43,9 @@ class RouterSinglePlugin: Plugin<RouterType> {
         current.close(will: single, completion: completion)
     }
     
+    /*
+        在即将打开的方法中记录新的单一特性页面, 以供下一次打开时进行操作
+     */
     override func will(open type: RouterType, controller: Routerable) {
         guard let controller = controller as? Singleable else {
             return

@@ -13,6 +13,7 @@ import Router
 
 extension RouterType {
     
+    // 根据类型或URL 返回对应的视图控制器
     func controller(url: URLConvertible, values: [String: Any]) -> Routerable? {
         switch self {
         case .open_http, .open_https:
@@ -36,10 +37,14 @@ extension RouterType {
         }
     }
     
+    // 根据类型或URL 返回对应的处理 注: 当上面方法因无需要打开的控制器返回时 才会执行.
     func handle(url: URLConvertible, values: [String : Any], completion: @escaping (Bool) -> Void) {
         completion(true)
     }
 }
+
+// 所有需要支持 Router 的视图控制器都需要实现 Routerable 协议
+// Routerable 协议默认实现了通用的打开关闭处理逻辑 如无法满足 可重写
 
 extension NoneViewController: Routerable { }
 extension NeedLoginViewController: Routerable { }

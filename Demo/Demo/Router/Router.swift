@@ -12,6 +12,8 @@ import Router
 
 enum Router {
     
+    // 初始化Router 并传入需要的插件
+    
     static let router = Provider(
         [RouterLaunchPlugin(),
          RouterAccountPlugin(),

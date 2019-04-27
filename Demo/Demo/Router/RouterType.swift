@@ -13,7 +13,6 @@ import Router
 private let schemes = "router"
 
 enum RouterType {
-    
     case open_http
     case open_https
     case open_none
@@ -24,6 +23,7 @@ enum RouterType {
 
 extension RouterType: RouterTypeable {
     
+    // 所有类型注册时使用的URL模板
     var pattern: String {
         switch self {
         case .open_http:        return "http://<path:_>"
@@ -35,6 +35,7 @@ extension RouterType: RouterTypeable {
         }
     }
     
+    // 所有类型在根据类型打开时所使用的完整URL
     var complete: String {
         switch self {
         case .open_fast:        return appending(pattern, ["id": "1"])
