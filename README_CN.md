@@ -1,7 +1,8 @@
 # Router
-[URLNavigator](https://github.com/devxoul/URLNavigator) 抽象路由组件
 
 ![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
+
+[URLNavigator](https://github.com/devxoul/URLNavigator) 抽象路由组件
 
 ## [天朝子民](README_CN.md)
 
