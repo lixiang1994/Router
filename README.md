@@ -100,16 +100,16 @@ class RouterXXXXPlugin: Plugin<RouterType> {
         return true
     }
     
-    override func prepare(open type: T, completion: @escaping (Bool) -> Void) {
+    override func prepare(open type: RouterType, completion: @escaping (Bool) -> Void) {
         /* ... */
         completion(true)
     }
     
-    override func will(open type: T, controller: Routerable) {
+    override func will(open type: RouterType, controller: Routerable) {
         /* ... */
     }
     
-    override func did(open type: T, controller: Routerable) {
+    override func did(open type: RouterType, controller: Routerable) {
         /* ... */
     }
 }
