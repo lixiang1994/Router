@@ -1,5 +1,5 @@
 PODS:
-  - Router (1.0.1):
+  - Router (1.1.0):
     - URLNavigator (= 2.2.0)
   - SnapKit (5.0.0)
   - URLNavigator (2.2.0)
@@ -18,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Router: 810fea5b5b9a711b99148f310f7103b63d69a420
+  Router: 0c6be337c4f753139d1c94ba67deb3121812e593
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
 
 PODFILE CHECKSUM: 8b89351c44c55e8724f89c11f677595c8fedef3b
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.7.5

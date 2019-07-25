@@ -41,30 +41,9 @@ extension Provider {
     ///   - completion: 打开完成回调
     /// - Returns: true or false
     @discardableResult
-    public func open(_ url: T, completion: ((Bool) -> Void)? = .none) -> Bool {
-        return open(url.complete, completion: completion)
-    }
-    
-    /// 打开
-    ///
-    /// - Parameters:
-    ///   - url: url
-    ///   - completion: 打开完成回调
-    /// - Returns: true or false
-    @discardableResult
     public func open(_ url: URLConvertible,
                      completion: ((Bool) -> Void)? = .none) -> Bool {
         return navigator.open(url, context: Context(completion ?? { _ in }))
-    }
-    
-    /// 获取视图控制器
-    ///
-    /// - Parameters:
-    ///   - url: url
-    ///   - context: context
-    /// - Returns: 视图控制器
-    public func viewController(_ url: T, _ context: Any? = nil) -> Routerable? {
-        return viewController(url.complete, context)
     }
     
     /// 获取视图控制器

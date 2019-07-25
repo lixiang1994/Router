@@ -34,13 +34,4 @@ extension RouterType: RouterTypeable {
         case .open_needlogin:   return schemes + "://open/needlogin"
         }
     }
-    
-    // 所有类型在根据类型打开时所使用的完整URL
-    var complete: String {
-        switch self {
-        case .open_fast:        return appending(pattern, ["id": "1"])
-        case .open_live:        return appending(pattern, ["id": "1"])
-        default:                return pattern
-        }
-    }
 }

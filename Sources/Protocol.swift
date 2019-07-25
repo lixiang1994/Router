@@ -51,9 +51,6 @@ public protocol RouterTypeable: CaseIterable {
     /// 模板 用于注册 例如: xxx://open/<path:_>
     var pattern: String { get }
     
-    /// 完整 用于打开 例如: xxx://open/xxx?id=1
-    var complete: String { get }
-    
     /// 打开控制器
     ///
     /// - Parameters:
@@ -85,10 +82,17 @@ public protocol Routerable: UIViewController {
     func close(_ completion: @escaping () -> Void)
 }
 
-public extension RouterTypeable {
+public extension URL {
     
     func appending(_ params: [String: String]) -> String {
-        return appending(complete, params)
+        return absoluteString.appending(params)
+    }
+}
+
+public extension String {
+    
+    func appending(_ params: [String: String]) -> String {
+        return appending(self, params)
     }
     
     func appending(_ url: String, _ params: [String: String]) -> String {

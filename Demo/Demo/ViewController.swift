@@ -66,10 +66,10 @@ extension ViewController: UITableViewDataSource {
             Router.open("https://www.baidu.com")
         
         case 1: // 打开一个普通的页面
-            Router.open(.open_none)
+            Router.open("router://open/none")
             
         case 2: // 打开一个需要登录的页面
-            Router.open(.open_needlogin)
+            Router.open("router://open/needlogin")
             
         case 3: // 打开一个单一特性的页面
             /*
@@ -77,10 +77,10 @@ extension ViewController: UITableViewDataSource {
                 这里模拟 LiveViewController 打开后 因某种原因要打开 FastViewController
                 演示的逻辑为 关闭 LiveViewController 后再打开 FastViewController
              */
-            Router.open(.open_live)
+            Router.open("router://open/live?id=1")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                Router.open(.open_fast)
+                Router.open("router://open/fast")
             }
         
         case 4:
@@ -90,10 +90,10 @@ extension ViewController: UITableViewDataSource {
              (比如点击某个推送通知 触发了打开一个新的 LiveViewController)
              演示的逻辑为 关闭 LiveViewController 后再打开新的 LiveViewController
              */
-            Router.open(.open_live)
+            Router.open("router://open/live?id=1")
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                Router.open(.open_live)
+                Router.open("router://open/live?id=1")
             }
             
         default:
