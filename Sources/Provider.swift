@@ -21,10 +21,11 @@ public class Provider<T: RouterTypeable> {
     
     typealias ViewControllerFactory = (_ url: URLConvertible, _ values: [String: Any], _ context: Any?) -> Routerable?
     
-    private let navigator = Navigator()
+    private let navigator: Navigator
     private let plugins: [Plugin<T>]
     
-    public init(_ plugins: [Plugin<T>]) {
+    public init(navigator: Navigator = Navigator(), _ plugins: [Plugin<T>]) {
+        self.navigator = navigator
         self.plugins = plugins
         
         // 注册处理

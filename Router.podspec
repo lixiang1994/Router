@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "Router"
-s.version      = "1.1.0"
+s.version      = "1.1.1"
 s.summary      = "基于URLNavigator抽象的路由组件 支持任意类型配置 插件机制"
 
 s.homepage     = "https://github.com/lixiang1994/Router"
@@ -21,7 +21,6 @@ s.requires_arc = true
 s.frameworks = "UIKit", "Foundation"
 
 s.swift_version = "5.0"
-#s.swift_versions = ["4.2", "5.0"]
 
 s.dependency "URLNavigator", "2.2.0"
 
