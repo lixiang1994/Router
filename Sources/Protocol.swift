@@ -73,13 +73,13 @@ public protocol Routerable: UIViewController {
     /// 打开
     ///
     /// - Parameter completion: 打开完成回调
-    func open(_ completion: @escaping () -> Void)
+    func open(with completion: @escaping () -> Void)
     
     /// 关闭
     ///
     /// - Parameters:
     ///   - completion: 关闭完成回调
-    func close(_ completion: @escaping () -> Void)
+    func close(with completion: @escaping () -> Void)
 }
 
 public extension URL {
@@ -120,7 +120,7 @@ public extension String {
 
 extension Routerable {
     
-    public func open(_ completion: @escaping () -> Void = {}) {
+    public func open(with completion: @escaping () -> Void = {}) {
         guard let controller = UIViewController.topMost else {
             return
         }
@@ -143,23 +143,35 @@ extension Routerable {
         }
     }
     
-    public func close(_ completion: @escaping () -> Void = {}) {
+    public func close(with completion: @escaping () -> Void = {}) {
         guard
             let navigation = navigationController,
             navigation.viewControllers.first != self else {
-                let presenting = presentingViewController ?? self
-                presenting.dismiss(animated: true, completion: completion)
-                return
+            let presenting = presentingViewController ?? self
+            presenting.dismiss(animated: true, completion: completion)
+            return
         }
         guard presentedViewController == nil else {
-            dismiss(animated: true) { [weak self] in self?.close(completion) }
+            dismiss(animated: true) { [weak self] in self?.close(with: completion) }
             return
+        }
+        
+        func parents(_ controller: UIViewController) -> [UIViewController] {
+            guard let parent = controller.parent else {
+                return [controller]
+            }
+            return [controller] + parents(parent)
         }
         
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
-        let temp = navigation.viewControllers.filter { $0 != self }
-        navigation.setViewControllers(temp, animated: true)
+        if let top = navigation.topViewController, parents(self).contains(top) {
+            navigation.popViewController(animated: true)
+            
+        } else {
+            let temp = navigation.viewControllers.filter { !parents(self).contains($0) }
+            navigation.setViewControllers(temp, animated: true)
+        }
         CATransaction.commit()
     }
 }

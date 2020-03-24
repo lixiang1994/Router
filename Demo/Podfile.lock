@@ -1,15 +1,15 @@
 PODS:
-  - Router (1.1.0):
-    - URLNavigator (= 2.2.0)
-  - SnapKit (5.0.0)
-  - URLNavigator (2.2.0)
+  - Router (1.1.2):
+    - URLNavigator (= 2.3.0)
+  - SnapKit (5.0.1)
+  - URLNavigator (2.3.0)
 
 DEPENDENCIES:
   - Router (from `../`)
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - SnapKit
     - URLNavigator
 
@@ -18,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Router: 0c6be337c4f753139d1c94ba67deb3121812e593
-  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
+  Router: 7b8807f9d3cbbed17cb639556b2d0dc92b3ceb5a
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
 
 PODFILE CHECKSUM: 8b89351c44c55e8724f89c11f677595c8fedef3b
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.0
