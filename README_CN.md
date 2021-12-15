@@ -4,7 +4,7 @@
 
 [URLNavigator](https://github.com/devxoul/URLNavigator) 抽象路由组件
 
-## [天朝子民](README_CN.md)
+## 2.0版本移至 [Apis](https://github.com/lixiang1994/Apis)
 
 ## Features
 
